@@ -1,9 +1,0 @@
-//Local Storage - Spielstand local im Webbrowser abspeichern
-// weiter() + neu() Buch seite 304
-
-if (localStorage.getItem("Spielstand") == null){
-  spielstand = 1;
-  }
-else {
-  spielstand = localStorage.getItem("Spielstand");
-  }
