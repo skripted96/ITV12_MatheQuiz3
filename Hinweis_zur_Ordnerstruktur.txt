@@ -1,0 +1,8 @@
+-	Im Ordner "javascript" befinden sich Unterordner, welche die
+	Gruppenaufteilung widerspiegeln.
+
+-	Für das Testen von einzelnen Funktionen/JS-Dateien kann es
+	hilfreich sein, wenn man eine entsprechende "Test-HTML-Datei",
+	welche nur die zu testende(n) Funktion(en) nutzt, erstellt.
+	Diese "Test-HTML-Datei" kann dann auch in den entsprechenden
+	JS-Unterordner abgelegt werden.
