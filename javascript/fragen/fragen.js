@@ -7,17 +7,19 @@
 // 0 - 20
 
 class Frage {
-	frageRegex = [
-		'/\d+\*\d+/g',
-		'/\d+\*\d+[-+]\d+/g',
-		'/\d+\*\d+[-+]\d+\*(1[0-9]||20||[2-9])/g'
-	];
-
-	frageString = [
-		'\d*\d',
-		'\d*\d?\d',
-		'\d*\d?\d*\d'
-	];
+	constructor() {
+		this.frageRegex = [
+			/\d+\*\d+/,
+			/\d+\*\d+[-+]\d+/,
+			/\d+\*\d+[-+]\d+\*(1[0-9]||20||[2-9])/
+		];
+	
+		this.frageString = [
+			'\d*\d',
+			'\d*\d?\d',
+			'\d*\d?\d*\d'
+		];
+	}
 
 	zufallszahlGenerieren(min, max) {
 		return Math.floor(Math.random() * (max - min + 1) + min);
@@ -28,14 +30,14 @@ class Frage {
 		// Feld 1-3 = Einfach
 		// Feld 4-6 = Mittel
 		// Feld 7-9 = Schwer
-		if (spielstand < 10) {
-			return 3;
+		if (spielstand < 4 && spielstand > 0) {
+			return 1;
 		}
 		else if (spielstand < 7) {
 			return 2;
 		}
-		else if (spielstand < 4 && spielstand > 0) {
-			return 1;
+		else if (spielstand < 10) {
+			return 3;
 		}
 		else {
 			prompt("Fehler: Spielstand nicht im Bereich von 1-9!");
@@ -43,7 +45,7 @@ class Frage {
 	}
 
 	fragePruefen(frage, schwierigkeit) {
-		if(frageRegex[schwierigkeit - 1].test(frage))
+		if (this.frageRegex[schwierigkeit - 1].test(frage))
 			return true;
 		return false;
 	}
@@ -61,7 +63,7 @@ class Frage {
 	
 	frageGenerieren(spielstand) {
 		let schwierigkeit = this.schwierigkeitErmitteln(spielstand);
-		let frage = frageString[schwierigkeit - 1];
+		let frage = this.frageString[schwierigkeit - 1];
 
 		let i = schwierigkeit;
 		do {
