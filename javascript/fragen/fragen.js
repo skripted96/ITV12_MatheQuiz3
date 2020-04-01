@@ -38,7 +38,7 @@ class Frage {
 			return 1;
 		}
 		else {
-			prompt("Fehler: Spielstand nicht im Bereicht von 1-9!");
+			prompt("Fehler: Spielstand nicht im Bereich von 1-9!");
 		}
 	}
 
@@ -69,13 +69,14 @@ class Frage {
 			i--;
 		} while (i != -1);
 
-		if (this.zufallszahlGenerieren(0, 1) == 1){
+		if (this.zufallszahlGenerieren(0, 1) == 1) {
 			frage.replace('?', '+');
-		} else {
+		} 
+		else {
 			frage.replace('?', '-');
 		}
 
-		if(fragePruefen(frage, schwierigkeit)){
+		if (this.fragePruefen(frage, schwierigkeit)) {
 			return frage;
 		}
 	}
