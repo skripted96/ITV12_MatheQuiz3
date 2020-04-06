@@ -5,13 +5,13 @@ var frage = new Frage();
 var fragen;
 
 function weiter(){
-    if(spielstand != 7){
+    if(spielstand != 10){
         alert(spielstand);
         fragen = frage.frageGenerieren(spielstand);
         let eingabe = prompt(fragen);    
         if(frage.ergebnisPruefen(fragen, eingabe))
          spielstand ++;
-    if(spielstand == 7){
+    if(spielstand == 10){
         alert("Spiel beendet");
         spielstand = 1;
         }
