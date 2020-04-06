@@ -71,11 +71,13 @@ class Frage {
 			i--;
 		} while (i != -1);
 
+		if (spielstand > 3) {
 		if (this.zufallszahlGenerieren(0, 1) == 1) {
-			frage.replace('?', '+');
+				frage = frage.replace('?', '+');
 		} 
 		else {
-			frage.replace('?', '-');
+				frage = frage.replace('?', '-');
+			}
 		}
 
 		if (this.fragePruefen(frage, schwierigkeit)) {
