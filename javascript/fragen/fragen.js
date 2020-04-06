@@ -40,7 +40,9 @@ class Frage {
 			return 3;
 		}
 		else {
-			prompt("Fehler: Spielstand nicht im Bereich von 1-9!");
+			alert("Fehler: Spielstand nicht im Bereich von 1-9!");
+			console.log("Fehler: Spielstand nicht im Bereich von 1-9!");
+			return 0;
 		}
 	}
 
@@ -63,6 +65,8 @@ class Frage {
 	
 	frageGenerieren(spielstand) {
 		let schwierigkeit = this.schwierigkeitErmitteln(spielstand);
+		if (schwierigkeit == 0) { return; }
+		
 		let frage = this.frageString[schwierigkeit - 1];
 
 		let i = schwierigkeit;
