@@ -32,11 +32,11 @@ class Frage {
 		// Feld 7-9 = Schwer
 		if (spielstand > 0 && spielstand < 10) {
 			if (spielstand < 4) {
-			return 1;
+				return 1;
 			} else if (spielstand < 7) {
-			return 2;
+				return 2;
 			} else if (spielstand < 10) {
-			return 3;
+				return 3;
 		}
 		} else {
 			alert("Fehler: Spielstand nicht im Bereich von 1-9!");
