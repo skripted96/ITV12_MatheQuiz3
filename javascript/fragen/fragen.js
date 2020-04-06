@@ -1,10 +1,10 @@
 // 3 Schwierigkeitsgrade
 // Einfach:	a * b 			Regex: \d+\*\d+
 // Mittel:	a * b -+ c		Regex: \d+\*\d+[-+]\d+
-// Schwer:	a * b -+ c * d	Regex: \d+\*\d+[-+]\d+\*[1-9]+
+// Schwer:	a * b -+ c * d	Regex: \d+\*\d+[-+]\d+\*(1[0-9]||20||[2-9])
 // Alle Zahlen werden zufällig generiert
 // Nur ganze Zahlen
-// 0 - 20
+// 1 - 20
 
 class Frage {
 	constructor() {
@@ -58,7 +58,7 @@ class Frage {
 	}
 
 	ergebnisPruefen(frage, ergebnis) {
-		if (ergebnis == ergebnisBerechnen(frage))
+		if (ergebnis == this.ergebnisBerechnen(frage))
 			return true;
 		return false;
 	}
@@ -66,20 +66,20 @@ class Frage {
 	frageGenerieren(spielstand) {
 		let schwierigkeit = this.schwierigkeitErmitteln(spielstand);
 		if (schwierigkeit == 0) { return; }
-		
+
 		let frage = this.frageString[schwierigkeit - 1];
 
 		let i = schwierigkeit;
 		do {
-			frage = frage.replace('\d', this.zufallszahlGenerieren(0, 20));
+			frage = frage.replace('\d', this.zufallszahlGenerieren(1, 20));
 			i--;
 		} while (i != -1);
 
 		if (spielstand > 3) {
-		if (this.zufallszahlGenerieren(0, 1) == 1) {
+			if (this.zufallszahlGenerieren(0, 1) == 1) {
 				frage = frage.replace('?', '+');
-		} 
-		else {
+			}
+			else {
 				frage = frage.replace('?', '-');
 			}
 		}
@@ -88,7 +88,7 @@ class Frage {
 			return frage;
 		}
 		else {
-			frageGenerieren(spielstand);
+			this.frageGenerieren(spielstand);
 		}
 	}
 }
