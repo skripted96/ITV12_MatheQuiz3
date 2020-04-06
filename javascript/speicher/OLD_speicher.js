@@ -1,9 +1,17 @@
-"use strict";
+
+
+var spielstand = 0;
+var frage = new Frage();
+var fragen;
 
 function weiter(){
-    if(fragen(spielstand)){
-        spielstand ++;
-    if(spielstand == 10){
+    if(spielstand != 7){
+        alert(spielstand);
+        fragen = frage.frageGenerieren(spielstand);
+        let eingabe = prompt(fragen);    
+        if(frage.ergebnisPruefen(fragen, eingabe))
+         spielstand ++;
+    if(spielstand == 7){
         alert("Spiel beendet");
         spielstand = 1;
         }
@@ -14,10 +22,9 @@ function weiter(){
 function neu(){
     spielstand = 1;
     localStorage.setItem("Spielstand",spielstand);
+    alert("Spielstand wurde auf 1 gesetzt");
 }
 
-
-let spielstand = 0;
 
 if (localStorage.getItem("spielstand") == null){
    spielstand = 1;
