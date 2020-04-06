@@ -6,11 +6,19 @@ var fragen;
 
 function weiter(){
     if(spielstand != 10){
-        alert(spielstand);
+        alert("Spielstand: " + spielstand);
         fragen = frage.frageGenerieren(spielstand);
         let eingabe = prompt(fragen);    
         if(frage.ergebnisPruefen(fragen, eingabe))
-         spielstand ++;
+            {
+                 spielstand ++;
+                 alert("Richtig!");
+            }
+        else
+            {
+                alert("Falsch!");
+            }
+        
     if(spielstand == 10){
         alert("Spiel beendet");
         spielstand = 1;
