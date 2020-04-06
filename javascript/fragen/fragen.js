@@ -30,16 +30,15 @@ class Frage {
 		// Feld 1-3 = Einfach
 		// Feld 4-6 = Mittel
 		// Feld 7-9 = Schwer
-		if (spielstand < 4 && spielstand > 0) {
+		if (spielstand > 0 && spielstand < 10) {
+			if (spielstand < 4) {
 			return 1;
-		}
-		else if (spielstand < 7) {
+			} else if (spielstand < 7) {
 			return 2;
-		}
-		else if (spielstand < 10) {
+			} else if (spielstand < 10) {
 			return 3;
 		}
-		else {
+		} else {
 			alert("Fehler: Spielstand nicht im Bereich von 1-9!");
 			console.log("Fehler: Spielstand nicht im Bereich von 1-9!");
 			return 0;
