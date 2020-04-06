@@ -86,9 +86,8 @@ class Frage {
 
 		if (this.fragePruefen(frage, schwierigkeit)) {
 			return frage;
-		}
-		else {
-			this.frageGenerieren(spielstand);
+		} else {
+			return this.frageGenerieren(spielstand);
 		}
 	}
 }
