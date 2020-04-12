@@ -1,23 +1,23 @@
 // 3 Schwierigkeitsgrade
-// Einfach:	a * b 			Regex: \d+\*\d+$
-// Mittel:	a * b -+ c		Regex: \d+\*\d+[-+]\d+$
-// Schwer:	a * b -+ c * d	Regex: \d+\*\d+[-+]\d+\*(1[0-9]|20|[2-9])$
+// Einfach:	a -+ b
+// Mittel:	a -+ b * c
+// Schwer:	a -+ b * c -+ d
 // Alle Zahlen werden zufällig generiert
 // Nur ganze Zahlen
-// 1 - 20
+// 2 - 10
 
 class Frage {
 	constructor() {
 		this._frageRegex = [
-			/\d+\*\d+$/,
-			/\d+\*\d+[-+]\d+$/,
-			/\d+\*\d+[-+]\d+\*(1[0-9]|20|[2-9])$/
+			/\d+[-+]\d+$/,
+			/\d+[-+]\d+\*\d+$/,
+			/\d+[-+]\d+\*\d+[-+](1[0-9]|20|[2-9])$/
 		];
 	
 		this._frageString = [
-			'\d*\d',
-			'\d*\d?\d',
-			'\d*\d?\d*\d'
+			'\d?\d',
+			'\d?\d*\d',
+			'\d?\d*\d?\d'
 		];
 	}
 
@@ -26,10 +26,6 @@ class Frage {
 	}
 
 	_schwierigkeitErmitteln(spielstand) {
-		// Position des Spielers ermitteln
-		// Feld 1-3 = Einfach
-		// Feld 4-6 = Mittel
-		// Feld 7-9 = Schwer
 		if (spielstand > 0 && spielstand < 10) {
 			if (spielstand < 4) {
 				return 1;
@@ -37,7 +33,7 @@ class Frage {
 				return 2;
 			} else if (spielstand < 10) {
 				return 3;
-		}
+			}
 		} else {
 			alert("Fehler: Spielstand nicht im Bereich von 1-9!");
 			console.log("Fehler: Spielstand nicht im Bereich von 1-9!");
@@ -70,17 +66,17 @@ class Frage {
 
 		let i = schwierigkeit;
 		do {
-			frage = frage.replace('\d', this._zufallszahlGenerieren(1, 20));
+			frage = frage.replace('\d', this._zufallszahlGenerieren(2, 10));
 			i--;
 		} while (i != -1);
 
-		if (spielstand > 3) {
+		do {
 			if (this._zufallszahlGenerieren(0, 1) == 1) {
 				frage = frage.replace('?', '+');
 			} else {
 				frage = frage.replace('?', '-');
 			}
-		}
+		} while (frage.indexOf('?') != -1);
 
 		if (this._fragePruefen(frage, schwierigkeit)) {
 			return frage;
