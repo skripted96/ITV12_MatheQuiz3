@@ -23,7 +23,7 @@ function weiter(){
             {
                 td_change_text(spielstand, "Falsch!");    //#
                 td_change_color(spielstand, false);  //#
-                spielstand++;   //#
+                // spielstand++;   //#
                 //alert("Falsch!"); #
             }
         
